@@ -1,0 +1,308 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+
+  a,
+  button:not(:disabled),
+  [role="button"] {
+    cursor: pointer;
+  }
+}
+
+/* Shared customer palette for every member surface. */
+body:has(.member-theme) [class~="bg-[#F4F1EA]"],
+body:has(.member-theme) [class~="bg-[#F5F0E7]"],
+body:has(.member-theme) [class~="bg-[#FCFAF6]"],
+body:has(.member-theme) [class~="bg-[#FDFCFB]"],
+body:has(.member-theme) [class~="bg-[#F9FBFC]"],
+body:has(.member-theme) [class~="bg-[#F7F9FA]"],
+body:has(.member-theme) [class~="bg-[#F6F8F9]"],
+body:has(.member-theme) [class~="bg-white"] {
+  background-color: #f5efe7 !important;
+}
+
+body:has(.member-theme) [class~="bg-[#3368A0]"],
+body:has(.member-theme) [class~="bg-[#31584D]"],
+body:has(.member-theme) [class~="bg-[#19352d]"] {
+  background-color: #213555 !important;
+}
+
+body:has(.member-theme) [class~="bg-[#18352d]"],
+body:has(.member-theme) [class~="bg-[#263F38]"],
+body:has(.member-theme) [class~="bg-[#29598c]"] {
+  background-color: #213555 !important;
+}
+
+body:has(.member-theme) [class~="bg-[#F3D9A7]"],
+body:has(.member-theme) [class~="bg-[#EAF4F5]"],
+body:has(.member-theme) [class~="bg-[#EAF1EC]"],
+body:has(.member-theme) [class~="bg-[#EEF2D8]"] {
+  background-color: #d8c4b6 !important;
+}
+
+body:has(.member-theme) [class~="text-[#19352d]"],
+body:has(.member-theme) [class~="text-[#26362E]"],
+body:has(.member-theme) [class~="text-[#31584D]"],
+body:has(.member-theme) [class~="text-[#3368A0]"],
+body:has(.member-theme) [class~="text-[#5E6C74]"],
+body:has(.member-theme) [class~="text-[#6F756E]"],
+body:has(.member-theme) [class~="text-[#8A7661]"] {
+  color: #213555 !important;
+}
+
+body:has(.member-theme) [class~="text-[#DDEAF6]"],
+body:has(.member-theme) [class~="text-[#F3D9A7]"],
+body:has(.member-theme) [class~="text-[#EAF4F5]"],
+body:has(.member-theme) [class~="text-[#C8DFDB]"] {
+  color: #d8c4b6 !important;
+}
+
+body:has(.member-theme) [class~="text-[#F2EFE7]"],
+body:has(.member-theme) [class~="text-white"] {
+  color: #f5efe7 !important;
+}
+
+body:has(.member-theme) [class~="border-[#D8E1E7]"],
+body:has(.member-theme) [class~="border-[#D8E1E2]"],
+body:has(.member-theme) [class~="border-[#E5DED2]"],
+body:has(.member-theme) [class~="border-[#EEF2F4]"] {
+  border-color: #d8c4b6 !important;
+}
+
+/* Keep every notification in the visual center, including legacy top-offset toasts. */
+[class*="fixed"][class*="left-1/2"][class*="top-16"] {
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fade-up 700ms ease-out both;
+}
+
+::selection {
+  background: #BCA88D;
+  color: #3E3F29;
+}
+
+/* Admin palette: keep the existing utility layout while changing only admin surfaces. */
+body:has(.admin-theme) {
+  background: #E1DCC9;
+  color: #1F150C;
+}
+
+body:has(.admin-theme) [class~="bg-[#F4F1EA]"],
+body:has(.admin-theme) [class~="bg-white"],
+body:has(.admin-theme) [class~="bg-[#F6F8F9]"],
+body:has(.admin-theme) [class~="bg-[#F9FBFC]"],
+body:has(.admin-theme) [class~="bg-[#F7F9FA]"] {
+  background-color: #E1DCC9 !important;
+}
+
+body:has(.admin-theme) [class~="bg-[#3368A0]"],
+body:has(.admin-theme) [class~="bg-[#29598c]"] {
+  background-color: #000000 !important;
+}
+
+body:has(.admin-theme) [class~="bg-[#29598c]"],
+body:has(.admin-theme) [class~="bg-[#EAF4F5]"],
+body:has(.admin-theme) [class~="bg-[#EEF2D8]"],
+body:has(.admin-theme) [class~="bg-[#F7E9D8]"] {
+  background-color: #412D15 !important;
+}
+
+body:has(.admin-theme) [class~="text-[#19352d]"],
+body:has(.admin-theme) [class~="text-[#5E6C74]"],
+body:has(.admin-theme) [class~="text-[#3E3F29]"] {
+  color: #1F150C !important;
+}
+
+body:has(.admin-theme) [class~="text-[#3368A0]"],
+body:has(.admin-theme) [class~="text-[#2F7B57]"],
+body:has(.admin-theme) [class~="text-[#596B3C]"],
+body:has(.admin-theme) [class~="text-[#A5662E]"],
+body:has(.admin-theme) [class~="text-[#541A1A]"],
+body:has(.admin-theme) [class~="text-[#DDEAF6]"],
+body:has(.admin-theme) [class~="text-[#EAF4F5]"] {
+  color: #412D15 !important;
+}
+
+body:has(.admin-theme) [class~="text-[#F2EFE7]"],
+body:has(.admin-theme) [class~="text-white"] {
+  color: #E1DCC9 !important;
+}
+
+body:has(.admin-theme) [class~="border-[#D8E1E7]"],
+body:has(.admin-theme) [class~="border-[#EEF2F4]"] {
+  border-color: #412D15 !important;
+}
+
+/* Normalize legacy admin utility colors across every admin route. */
+body:has(.admin-theme) [class*="from-[#"],
+body:has(.admin-theme) [class*="to-[#"] {
+  background-image: linear-gradient(135deg, #000000, #412D15) !important;
+}
+
+body:has(.admin-theme) [class~="bg-[#DDEAF6]"],
+body:has(.admin-theme) [class~="bg-[#C8DFDB]"],
+body:has(.admin-theme) [class~="bg-[#EEF2D8]"],
+body:has(.admin-theme) [class~="bg-[#F7E9D8]"],
+body:has(.admin-theme) [class~="bg-[#E5EEF9]"],
+body:has(.admin-theme) [class~="bg-[#EAF4F5]"],
+body:has(.admin-theme) [class~="bg-[#F6F8F9]"],
+body:has(.admin-theme) [class~="bg-[#F7F9FA]"],
+body:has(.admin-theme) [class~="bg-[#F9FBFC]"] {
+  background-color: #E1DCC9 !important;
+}
+
+body:has(.admin-theme) [class~="text-[#7BB7D7]"],
+body:has(.admin-theme) [class~="text-[#5D8B87]"],
+body:has(.admin-theme) [class~="text-[#C58946]"],
+body:has(.admin-theme) [class~="text-[#7D9A52]"],
+body:has(.admin-theme) [class~="text-[#5F6FB2]"],
+body:has(.admin-theme) [class~="text-[#A5662E]"],
+body:has(.admin-theme) [class~="text-[#2F7B57"] {
+  color: #412D15 !important;
+}
+
+body:has(.admin-theme) [class~="bg-[#541A1A]"],
+body:has(.admin-theme) [class~="bg-[#6d1d1d]"],
+body:has(.admin-theme) [class~="bg-red-50"] {
+  background-color: #412D15 !important;
+}
+
+body:has(.admin-theme) [class~="text-[#541A1A]"],
+body:has(.admin-theme) [class~="text-red-600"],
+body:has(.admin-theme) [class~="text-red-700"] {
+  color: #1F150C !important;
+}

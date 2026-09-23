@@ -1,0 +1,54 @@
+[
+  {
+    "id": "1789796814285",
+    "kode_diskon": "CANTOT093",
+    "nominal_potongan": 100000,
+    "minimal_transaksi": 500000,
+    "kuota": 17,
+    "status": "AKTIF",
+    "tanggal_mulai": "2026-02-09",
+    "tanggal_berakhir": "2026-10-09",
+    "deskripsi": "",
+    "created_at": "2026-09-19T05:46:54.285Z",
+    "updated_at": "2026-09-21T11:06:30.253Z"
+  },
+  {
+    "id": "1789832046199",
+    "kode_diskon": "SERUUU9.9",
+    "nominal_potongan": 100000,
+    "minimal_transaksi": 100000,
+    "kuota": 11,
+    "status": "AKTIF",
+    "tanggal_mulai": "2026-08-09",
+    "tanggal_berakhir": "2026-11-20",
+    "deskripsi": "",
+    "created_at": "2026-09-19T15:34:06.200Z",
+    "updated_at": "2026-09-22T05:11:58.355Z"
+  },
+  {
+    "id": 1789891276506,
+    "kode_diskon": "10.10",
+    "nominal_potongan": 123000,
+    "minimal_transaksi": 190000,
+    "kuota": 0,
+    "status": "NONAKTIF",
+    "tanggal_mulai": "2026-02-22",
+    "tanggal_berakhir": "2026-11-20",
+    "deskripsi": "",
+    "created_at": "2026-09-20T08:01:16.506Z",
+    "updated_at": "2026-09-20T08:03:59.625Z"
+  },
+  {
+    "id": 1790054082268,
+    "kode_diskon": "MEGAABINTANG22",
+    "nominal_potongan": 100000,
+    "minimal_transaksi": 200000,
+    "kuota": 14,
+    "status": "AKTIF",
+    "tanggal_mulai": "2026-03-31",
+    "tanggal_berakhir": "2027-09-08",
+    "deskripsi": "",
+    "created_at": "2026-09-22T05:14:42.268Z",
+    "updated_at": "2026-09-22T05:24:45.699Z"
+  }
+]
