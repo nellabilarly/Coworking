@@ -460,6 +460,20 @@ export async function saveAuthSession(responseData: any, fallbackUser?: any, for
 }
 
 // 🌟 TAMBAHAN KELOMPOK BARU: Fungsi Register Admin Space (Menggunakan JSON raw)
+async function parseJsonResponse(response: Response): Promise<any> {
+  const rawText = await response.text().catch(() => "");
+
+  if (!rawText) {
+    return {};
+  }
+
+  try {
+    return JSON.parse(rawText);
+  } catch {
+    return { message: rawText };
+  }
+}
+
 export async function registerAdmin(payload: any): Promise<any> {
   const baseUrl = typeof window !== "undefined"
     ? window.location.origin
@@ -478,10 +492,10 @@ export async function registerAdmin(payload: any): Promise<any> {
     body: JSON.stringify(payload),
   });
 
-  const result = await response.json();
+  const result = await parseJsonResponse(response);
 
   if (!response.ok) {
-    throw new Error(result.message || "Gagal melakukan registrasi admin.");
+    throw new Error(result?.message || "Gagal melakukan registrasi admin.");
   }
 
   const registrationData =
@@ -512,10 +526,10 @@ async function registerMemberAccount(formData: FormData): Promise<any> {
     body: formData, // Mengirimkan objek FormData langsung (boundary otomatis dibuat browser)
   });
 
-  const result = await response.json();
+  const result = await parseJsonResponse(response);
 
   if (!response.ok) {
-    throw new Error(result.message || "Gagal melakukan registrasi member.");
+    throw new Error(result?.message || "Gagal melakukan registrasi member.");
   }
 
   return result;

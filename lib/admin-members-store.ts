@@ -1,5 +1,4 @@
-import fs from "node:fs/promises";
-import path from "node:path";
+import { readJsonFile, writeJsonFile } from "@/lib/server-store";
 
 export type MemberRecord = {
   id: number | string;
@@ -18,8 +17,7 @@ export type MemberRecord = {
   [key: string]: any;
 };
 
-const DATA_DIR = path.join(process.cwd(), "data");
-const DATA_FILE = path.join(DATA_DIR, "admin-members.json");
+const DATA_FILE = "admin-members.json";
 
 export function normalizeMemberPhoto(value?: unknown) {
   const photo = String(value ?? "").trim();
@@ -54,40 +52,22 @@ export function normalizeMemberPhoto(value?: unknown) {
   return `/${normalized}`;
 }
 
-async function ensureStore() {
-  await fs.mkdir(DATA_DIR, { recursive: true });
-
-  try {
-    await fs.access(DATA_FILE);
-  } catch {
-    await fs.writeFile(DATA_FILE, "[]", "utf8");
-  }
-}
-
 export async function readMembers(): Promise<MemberRecord[]> {
-  await ensureStore();
+  const parsed = await readJsonFile<MemberRecord[]>(DATA_FILE, []);
 
-  const raw = await fs.readFile(DATA_FILE, "utf8");
-
-  try {
-    const parsed = JSON.parse(raw || "[]");
-    return Array.isArray(parsed)
-      ? parsed.map((item) => ({
-          ...item,
-          foto: normalizeMemberPhoto(item?.foto_url || item?.foto || item?.profile_photo || item?.photo),
-          foto_url: normalizeMemberPhoto(item?.foto_url || item?.foto || item?.profile_photo || item?.photo),
-          profile_photo: normalizeMemberPhoto(item?.profile_photo || item?.foto_url || item?.foto || item?.photo),
-          photo: normalizeMemberPhoto(item?.photo || item?.profile_photo || item?.foto_url || item?.foto),
-        }))
-      : [];
-  } catch {
-    return [];
-  }
+  return Array.isArray(parsed)
+    ? parsed.map((item) => ({
+        ...item,
+        foto: normalizeMemberPhoto(item?.foto_url || item?.foto || item?.profile_photo || item?.photo),
+        foto_url: normalizeMemberPhoto(item?.foto_url || item?.foto || item?.profile_photo || item?.photo),
+        profile_photo: normalizeMemberPhoto(item?.profile_photo || item?.foto_url || item?.foto || item?.photo),
+        photo: normalizeMemberPhoto(item?.photo || item?.profile_photo || item?.foto_url || item?.foto),
+      }))
+    : [];
 }
 
 export async function writeMembers(members: MemberRecord[]) {
-  await ensureStore();
-  await fs.writeFile(DATA_FILE, JSON.stringify(members, null, 2), "utf8");
+  await writeJsonFile(DATA_FILE, members);
 }
 
 export function normalizeMemberPayload(input: Record<string, any>): MemberRecord {

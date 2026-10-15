@@ -1,5 +1,4 @@
-import fs from "node:fs/promises";
-import path from "node:path";
+import { readJsonFile, writeJsonFile } from "@/lib/server-store";
 
 export type DiskonRecord = {
   id: number | string;
@@ -16,35 +15,15 @@ export type DiskonRecord = {
   [key: string]: any;
 };
 
-const DATA_DIR = path.join(process.cwd(), "data");
-const DATA_FILE = path.join(DATA_DIR, "admin-diskons.json");
-
-async function ensureStore() {
-  await fs.mkdir(DATA_DIR, { recursive: true });
-
-  try {
-    await fs.access(DATA_FILE);
-  } catch {
-    await fs.writeFile(DATA_FILE, "[]", "utf8");
-  }
-}
+const DATA_FILE = "admin-diskons.json";
 
 export async function readDiskons(): Promise<DiskonRecord[]> {
-  await ensureStore();
-
-  const raw = await fs.readFile(DATA_FILE, "utf8");
-
-  try {
-    const parsed = JSON.parse(raw || "[]");
-    return Array.isArray(parsed) ? parsed : [];
-  } catch {
-    return [];
-  }
+  const parsed = await readJsonFile<DiskonRecord[]>(DATA_FILE, []);
+  return Array.isArray(parsed) ? parsed : [];
 }
 
 export async function writeDiskons(diskons: DiskonRecord[]) {
-  await ensureStore();
-  await fs.writeFile(DATA_FILE, JSON.stringify(diskons, null, 2), "utf8");
+  await writeJsonFile(DATA_FILE, diskons);
 }
 
 export function normalizeDiskonPayload(input: Record<string, any>): DiskonRecord {

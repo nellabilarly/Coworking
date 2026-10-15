@@ -1,12 +1,12 @@
 {
   "role": "admin",
-  "nama_pemilik": "nela",
-  "nama_coworking": "telkom",
-  "telp": "1234567890",
+  "nama_pemilik": "Demo",
+  "nama_coworking": "Demo Hub",
+  "telp": "123",
   "alamat": "",
   "foto": null,
-  "username": "sheeneii@gmail.com",
-  "password": "123456789",
+  "username": "demo",
+  "password": "123456",
   "id": 1789915347061,
-  "updated_at": "2026-09-22T05:08:19.477Z"
+  "updated_at": "2026-10-15T04:06:17.751Z"
 }

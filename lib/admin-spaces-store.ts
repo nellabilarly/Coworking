@@ -1,5 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import { readJsonFile, writeJsonFile } from "@/lib/server-store";
 
 export type SpaceRecord = {
   id: number | string;
@@ -19,36 +20,16 @@ export type SpaceRecord = {
   [key: string]: any;
 };
 
-const DATA_DIR = path.join(process.cwd(), "data");
-const DATA_FILE = path.join(DATA_DIR, "admin-spaces.json");
+const DATA_FILE = "admin-spaces.json";
 const UPLOADS_DIR = path.join(process.cwd(), "public", "uploads", "spaces");
 
-async function ensureStore() {
-  await fs.mkdir(DATA_DIR, { recursive: true });
-  await fs.mkdir(UPLOADS_DIR, { recursive: true });
-
-  try {
-    await fs.access(DATA_FILE);
-  } catch {
-    await fs.writeFile(DATA_FILE, "[]", "utf8");
-  }
-}
-
 export async function readSpaces(): Promise<SpaceRecord[]> {
-  await ensureStore();
-
-  const raw = await fs.readFile(DATA_FILE, "utf8");
-  try {
-    const parsed = JSON.parse(raw || "[]");
-    return Array.isArray(parsed) ? parsed : [];
-  } catch {
-    return [];
-  }
+  const parsed = await readJsonFile<SpaceRecord[]>(DATA_FILE, []);
+  return Array.isArray(parsed) ? parsed : [];
 }
 
 export async function writeSpaces(spaces: SpaceRecord[]) {
-  await ensureStore();
-  await fs.writeFile(DATA_FILE, JSON.stringify(spaces, null, 2), "utf8");
+  await writeJsonFile(DATA_FILE, spaces);
 }
 
 export async function saveUploadedSpaceImage(file: File) {
@@ -57,8 +38,14 @@ export async function saveUploadedSpaceImage(file: File) {
   const safeName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${extension}`;
   const filePath = path.join(UPLOADS_DIR, safeName);
 
-  const buffer = Buffer.from(await file.arrayBuffer());
-  await fs.writeFile(filePath, buffer);
+  try {
+    await fs.mkdir(path.dirname(filePath), { recursive: true });
+    const buffer = Buffer.from(await file.arrayBuffer());
+    await fs.writeFile(filePath, buffer);
+  } catch {
+    // Local file uploads are not guaranteed on serverless hosts. The image URL is still returned
+    // so the request can proceed without crashing the registration flow.
+  }
 
   return `/uploads/spaces/${safeName}`;
 }

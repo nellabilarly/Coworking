@@ -100,5 +100,39 @@
     "status": "AKTIF",
     "created_at": "2026-09-22T05:07:26.712Z",
     "updated_at": "2026-09-22T05:43:24.279Z"
+  },
+  {
+    "id": "1790128538553",
+    "username": "quinnn@gmail.com",
+    "password": "12345678",
+    "nama_member": "quin",
+    "instansi": "telokm",
+    "alamat": "malang",
+    "telp": "1234567890",
+    "foto": null,
+    "foto_url": null,
+    "profile_photo": null,
+    "photo": null,
+    "role": "member",
+    "status": "AKTIF",
+    "created_at": "2026-09-23T01:55:38.553Z",
+    "updated_at": "2026-09-23T01:55:49.422Z"
+  },
+  {
+    "id": "1790130880326",
+    "username": "laila@gmail.com",
+    "password": "12345678",
+    "nama_member": "laila",
+    "instansi": "telkom",
+    "alamat": "malang",
+    "telp": "123456789",
+    "foto": "/uploads/members/1790131488340-wwc08o7s42q.jpg",
+    "foto_url": "/uploads/members/1790131488340-wwc08o7s42q.jpg",
+    "profile_photo": "/uploads/members/1790131488340-wwc08o7s42q.jpg",
+    "photo": "/uploads/members/1790131488340-wwc08o7s42q.jpg",
+    "role": "member",
+    "status": "AKTIF",
+    "created_at": "2026-09-23T02:34:40.326Z",
+    "updated_at": "2026-09-23T02:44:48.420Z"
   }
 ]

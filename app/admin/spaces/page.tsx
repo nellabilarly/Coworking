@@ -21,8 +21,8 @@ export default function AdminSpacesPage() {
                 </h1>
               </div>
 
-              <Link
-                href="/admin/sp  aces/create"
+               <Link
+                 href="/admin/spaces/create"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-[#3368A0] px-5 py-2.5 text-sm font-semibold text-[#F2EFE7] transition hover:bg-[#29598c]"
               >
                 <Plus size={16} />
