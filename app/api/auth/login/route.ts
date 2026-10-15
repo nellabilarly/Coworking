@@ -21,7 +21,9 @@ export async function POST(request: NextRequest) {
     user = normalizeAdminProfile(admin);
     role = "admin";
   } else {
-    const member = (await readMembers()).find((item) => item.username.toLowerCase() === username.toLowerCase() && item.password === password);
+    const member = (await readMembers()).find(
+      (item) => String(item?.username ?? "").trim().toLowerCase() === username.toLowerCase() && item.password === password,
+    );
     if (member) user = normalizeAuthUser(member);
   }
 

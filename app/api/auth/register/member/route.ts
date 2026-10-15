@@ -18,7 +18,9 @@ export async function POST(request: NextRequest) {
   if (password.length < 6) return NextResponse.json({ message: "Password minimal 6 karakter." }, { status: 400 });
 
   const members = await readMembers();
-  if (members.some((item) => item.username.toLowerCase() === username.toLowerCase())) return NextResponse.json({ message: "Username member sudah terdaftar." }, { status: 409 });
+  if (members.some((item) => String(item?.username ?? "").trim().toLowerCase() === username.toLowerCase())) {
+    return NextResponse.json({ message: "Username member sudah terdaftar." }, { status: 409 });
+  }
 
   let photoUrl: string | null = null;
   if (photo instanceof File && photo.size > 0) {

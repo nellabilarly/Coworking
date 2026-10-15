@@ -74,8 +74,8 @@ export async function GET(request: NextRequest) {
 
   const member = members.find((item) => {
     const matchesId = identityId != null && String(item.id) === String(identityId);
-    const matchesUsername = identityUsername && item.username.toLowerCase() === identityUsername;
-    const matchesEmail = identityEmail && String(item.email || "").toLowerCase() === identityEmail;
+    const matchesUsername = identityUsername && String(item?.username ?? "").trim().toLowerCase() === identityUsername;
+    const matchesEmail = identityEmail && String(item?.email || "").toLowerCase() === identityEmail;
     return Boolean(matchesId || matchesUsername || matchesEmail);
   });
 
